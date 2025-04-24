@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: deploy-vcluster
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/adriankabala/argocd-demo.git"
+    targetRevision: HEAD
+    path: "vcluster"
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: my-namespace
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
