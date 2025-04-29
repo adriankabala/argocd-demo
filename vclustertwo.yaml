@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: my-vcluster
+    namespace: second-vcluster
     server: 'https://kubernetes.default.svc'
   source:
     path: vcluster
