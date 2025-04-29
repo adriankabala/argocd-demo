@@ -24,7 +24,7 @@ spec:
                 enabled: true
                 statefulSet:
                   highAvailability:
-                    replicas: 3
+                    replicas: 4
           # Deploy vCluster with 3 replicas
           statefulSet:
             highAvailability:
