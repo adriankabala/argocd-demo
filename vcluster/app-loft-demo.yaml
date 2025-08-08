@@ -11,7 +11,7 @@ spec:
   source:
     path: ""
     repoURL: "https://charts.loft.sh"
-    targetRevision: $PLATFORM_VERSION
+    targetRevision: 4.3.5
     chart: vcluster-platform
     helm:
       parameters:
