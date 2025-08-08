@@ -1,0 +1,260 @@
+apiVersion: storage.loft.sh/v1
+kind: App
+metadata:
+  name: loft-demo
+  labels:
+    app.kubernetes.io/instance: loft-configuration
+spec:
+  displayName: Loft Demo
+  description: >-
+    Loft is an advanced control plane that runs on top of your existing
+    Kubernetes clusters to add multi-tenancy and self-service capabilities to
+    these clusters to get the full value out of Kubernetes beyond cluster
+    management.
+  owner:
+    team: loft-admins
+  icon: >-
+    https://raw.githubusercontent.com/loft-sh/loft/master/docs/static/media/loft-logo.svg
+  config:
+    chart:
+      name: loft
+      version: 3.3.1
+      repoURL: https://charts.loft.sh/
+    values: |+
+      env:
+        PRODUCT: {{ .Values.loftProduct }}
+
+      admin:
+        create: false
+
+      isolation:
+        enabled: true
+        networkPolicy:
+          enabled: false
+
+      ingress:
+        enabled: true
+        ingressClass: nginx
+        host: "{{ .Values.domain }}"
+        tls:
+          enabled: true
+          secret: ""
+
+      envValueFrom:
+        CLIENT_SECRET:
+          secretKeyRef:
+            name: oidc-secret
+            key: clientSecret
+
+      config:
+        loftHost: "{{ .Values.domain }}"
+        auth:
+          oidc:
+            issuerUrl: https://loft.rocks/oidc
+            clientId: loft
+            clientSecret: $CLIENT_SECRET
+            redirectURI: https://{{ .Values.domain }}/auth/oidc/callback
+            groupsClaim: groups
+
+            
+  parameters:
+    - variable: domain
+      label: Loft Domain
+      description: >-
+        The domain to run this Loft instance on, e.g.
+        some-customer.loft.host
+      required: true
+      placeholder: some-customer.loft.host
+    - variable: loftProduct
+      label: loftProduct
+      description: Please select the Loft product being demoed.
+      required: true
+  versions:
+    - icon: >-
+        https://raw.githubusercontent.com/loft-sh/loft/master/docs/static/media/loft-logo.svg
+      config:
+        chart:
+          name: loft
+          version: 3.3.1
+          repoURL: https://charts.loft.sh/
+        values: |+
+          env:
+            PRODUCT: {{ .Values.loftProduct }}
+
+          admin:
+            create: false
+
+          isolation:
+            enabled: true
+            networkPolicy:
+              enabled: false
+
+          ingress:
+            enabled: true
+            ingressClass: nginx
+            host: "{{ .Values.domain }}"
+            tls:
+              enabled: true
+              secret: ""
+
+          envValueFrom:
+            CLIENT_SECRET:
+              secretKeyRef:
+                name: oidc-secret
+                key: clientSecret
+
+          config:
+            loftHost: "{{ .Values.domain }}"
+            uiSettings:
+              logoURL: "{{ .Values.uiLogoURL }}"
+              navBarButtons:
+                - link: https://www.vcluster.com/pro/docs/getting-started/explore
+                  position: TopEnd
+                  text: vCluster Docs
+            auth:
+              oidc:
+                issuerUrl: https://loft.rocks/oidc
+                clientId: loft
+                clientSecret: $CLIENT_SECRET
+                redirectURI: https://{{ .Values.domain }}/auth/oidc/callback
+                groupsClaim: groups
+
+
+      parameters:
+        - variable: domain
+          label: Loft Domain
+          description: >-
+            The domain to run this Loft instance on, e.g.
+            some-customer.loft.host
+          required: true
+          placeholder: some-customer.loft.host
+        - variable: loftProduct
+          label: loftProduct
+          description: Please select the Loft product being demoed.
+          required: true
+        - variable: uiLogoURL
+          label: Logo logoURL
+          description: Will update the Loft config ui settings logoURL
+          defaultValue: https://avatars.githubusercontent.com/u/65466868?s=200&v=4
+      defaultNamespace: loft
+      version: 1.0.0
+    - icon: >-
+        https://raw.githubusercontent.com/loft-sh/loft/master/docs/static/media/loft-logo.svg
+      config:
+        chart:
+          name: loft
+          version: 3.3.0-beta.3
+          repoURL: https://charts.loft.sh/
+        values: |+
+          env:
+            PRODUCT: {{ .Values.loftProduct }}
+
+          admin:
+            create: true
+            username: admin
+            password: "changeme"
+
+          isolation:
+            enabled: true
+            networkPolicy:
+                enabled: false
+
+          ingress:
+            enabled: true
+            ingressClass: nginx
+            host: "{{ .Values.domain }}"
+            tls:
+              enabled: true
+              secret: ""
+
+          envValueFrom:
+            CLIENT_SECRET:
+              secretKeyRef:
+                name: oidc-secret
+                key: clientSecret
+
+          config:
+            loftHost: "{{ .Values.domain }}"
+            auth:
+              oidc:
+                issuerUrl: https://loft.rocks/oidc
+                clientId: loft
+                clientSecret: $CLIENT_SECRET
+                redirectURI: https://{{ .Values.domain }}/auth/oidc/callback
+                groupsClaim: groups
+
+
+      parameters:
+        - variable: domain
+          label: Loft Domain
+          description: >-
+            The domain to run this Loft instance on, e.g.
+            some-customer.loft.host
+          required: true
+          placeholder: some-customer.loft.host
+        - variable: loftProduct
+          label: loftProduct
+          description: Please select the Loft product being demoed.
+          required: true
+      version: 0.9.0
+    - icon: >-
+        https://raw.githubusercontent.com/loft-sh/loft/master/docs/static/media/loft-logo.svg
+      config:
+        chart:
+          name: loft
+          version: 3.3.0-beta.3
+          repoURL: https://charts.loft.sh/
+        values: |
+          admin:
+            create: false
+
+          isolation:
+            enabled: true
+            networkPolicy:
+              enabled: false
+
+          ingress:
+            enabled: true
+            ingressClass: nginx
+            host: "{{ .Values.domain }}"
+            tls:
+              enabled: true
+              secret: ""
+
+          envValueFrom:
+            CLIENT_SECRET:
+              secretKeyRef:
+                name: oidc-secret
+                key: clientSecret
+
+          config:
+            loftHost: "{{ .Values.domain }}"
+            auth:
+              oidc:
+                issuerUrl: https://loft.rocks/oidc
+                clientId: loft
+                clientSecret: $CLIENT_SECRET
+                redirectURI: https://{{ .Values.domain }}/auth/oidc/callback
+                groupsClaim: groups
+      parameters:
+        - variable: domain
+          label: Loft Domain
+          description: >-
+            The domain to run this Loft instance on, e.g.
+            some-customer.loft.host
+          required: true
+          placeholder: some-customer.loft.host
+      version: 0.0.0
+  access:
+    - verbs:
+        - '*'
+      subresources:
+        - '*'
+      teams:
+        - loft-admins
+    - verbs:
+        - get
+      users:
+        - '*'
+  recommendedApp:
+    - virtualcluster
