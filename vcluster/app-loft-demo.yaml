@@ -38,8 +38,8 @@ spec:
           value: "1"
 
         # config
-        - name: config.loftHost
-          value: "https://vcluster-platform.example"
+       # - name: config.loftHost
+        #  value: "https://vcluster-platform.example"
 
   project: default
   syncPolicy:
