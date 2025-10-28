@@ -11,7 +11,7 @@ spec:
   source:
     path: vcluster
     repoURL: 'https://charts.loft.sh'
-    targetRevision: 0.25.0-beta.2
+    targetRevision: 0.29.0
     chart: vcluster
     helm:
       releaseName: othervc
