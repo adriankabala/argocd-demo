@@ -33,7 +33,7 @@ spec:
 
         # audit
         - name: audit.enableSideCar
-          value: "true"
+          value: "false"
         - name: config.audit.level
           value: "1"
 
