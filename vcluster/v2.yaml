@@ -6,8 +6,8 @@ metadata:
   name: argocdv2
   namespace: argocd
 spec:
+  project: default
   destination:
-    name: ''
     namespace: my-other-vcluster
     server: 'https://kubernetes.default.svc'
   source:
