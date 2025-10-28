@@ -1,9 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
+labels:
+  loft.sh/import-argocd: "true"
 metadata:
   name: argocd
   namespace: argocd
 spec:
+  project: default
   destination:
     name: ''
     namespace: my-vcluster
