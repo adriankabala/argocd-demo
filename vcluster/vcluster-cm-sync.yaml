@@ -3,7 +3,7 @@ kind: Application
 labels:
   loft.sh/import-argocd: "true"
 metadata:
-  name: argocdv2
+  name: vcluster-cm-sync
   namespace: argocd
 spec:
   project: default
