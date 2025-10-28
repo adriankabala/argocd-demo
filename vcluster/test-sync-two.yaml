@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocdv3
+  name: test-sync-two
   namespace: argocd
 spec:
   destination:
@@ -14,7 +14,7 @@ spec:
     targetRevision: 0.25.0-beta.2
     chart: vcluster
     helm:
-      releaseName: test
+      releaseName: test-sync-two
       values: |
         sync:
           fromHost:
