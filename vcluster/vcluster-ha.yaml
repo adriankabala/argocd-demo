@@ -3,7 +3,7 @@ kind: Application
 labels:
   loft.sh/import-argocd: "true"
 metadata:
-  name: argocd
+  name: ha-test
   namespace: argocd
 spec:
   project: default
@@ -14,7 +14,7 @@ spec:
   source:
     path: vcluster
     repoURL: 'https://charts.loft.sh'
-    targetRevision: 0.25.0-beta.2
+    targetRevision: 0.26.0
     chart: vcluster
     helm:
       releaseName: argocd
