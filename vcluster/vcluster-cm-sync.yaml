@@ -16,7 +16,7 @@ spec:
     targetRevision: 0.29.0
     chart: vcluster
     helm:
-      releaseName: othervc
+      releaseName: vcluster-cm-sync
       values: |
         sync:
           fromHost:
