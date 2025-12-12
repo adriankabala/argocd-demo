@@ -1,7 +1,5 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
-labels:
-  loft.sh/import-argocd: "true"
 metadata:
   name: ha-test
   namespace: argocd
@@ -14,7 +12,7 @@ spec:
   source:
     path: vcluster
     repoURL: 'https://charts.loft.sh'
-    targetRevision: 0.26.0
+    targetRevision: 0.31.0
     chart: vcluster
     helm:
       releaseName: ha-test
