@@ -13,7 +13,7 @@ spec:
   source:
     path: vcluster
     repoURL: 'https://charts.loft.sh'
-    targetRevision: 0.29.0
+    targetRevision: 0.33.0
     chart: vcluster
     helm:
       releaseName: vcluster-cm-sync

@@ -11,7 +11,7 @@ spec:
   source:
     path: ""
     repoURL: "https://charts.loft.sh"
-    targetRevision: 4.5.2
+    targetRevision: 4.9.0
     chart: vcluster-platform
     helm:
       parameters:
@@ -38,8 +38,8 @@ spec:
           value: "1"
 
         # config
-       # - name: config.loftHost
-        #  value: "https://vcluster-platform.example"
+        - name: config.loftHost
+          value: "https://vcluster-platform.example"
 
   project: default
   syncPolicy:
