@@ -38,8 +38,10 @@ spec:
           value: "1"
 
         # config
-        - name: config.loftHost
-          value: "https://vcluster-platform.example"
+        # loftHost is auto-provisioned by Loft Router for local/demo setups.
+        # Set explicitly only when using your own ingress domain.
+        # - name: config.loftHost
+        #   value: "https://your-domain.example.com"
 
   project: default
   syncPolicy:
